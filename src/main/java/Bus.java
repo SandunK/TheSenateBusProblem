@@ -1,9 +1,13 @@
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 public class Bus implements Runnable{
 
     private int totalRidersWaitingToBoard;   //A variable to hold the number of riders available for the bus
     private int bus_id;
     private int totalBoardedRiders = 0;   //A variable to hold the number of riders boarded into the bus
     private Resource resource;
+    private static final Logger logger = LogManager.getLogger(Bus.class);
     /*
     Each bus is assigned a unique identifier so that it is easy to demonstrate the procedure when there are more than one bus.
     */
