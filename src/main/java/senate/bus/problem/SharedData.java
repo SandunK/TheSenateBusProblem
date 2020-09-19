@@ -27,4 +27,7 @@ public class SharedData {
     public void incrementWaiting() {
         waiting += 1;
     }
+    public void setWaiting(int waiting) {
+        this.waiting = waiting;
+    }
 }

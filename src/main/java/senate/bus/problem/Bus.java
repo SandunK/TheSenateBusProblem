@@ -35,7 +35,7 @@ public class Bus implements Runnable{
                 resource.getBus().release();                              //bus signals that it has arrived and can take a passenger on board
                 logger.info("The bus " + bus_id + " released the bus lock " + i + "th rider");
                 resource.getBoarded().acquire();                          //Allows one rider to get on board
-                logger.info("bus " + bus_id + " acquired boarded !!!!! !!");
+                logger.info("The bus " + bus_id + " acquired boarded !!!!! !!");
             }
 
                 /*
@@ -43,12 +43,13 @@ public class Bus implements Runnable{
                 Else if the number of riders who were waiting earlier was less than 50, then all of them got on board. therefore the number of remaining riders is 0.
                 */
             waiting = Math.max((waiting - 50), 0);
+            resource.setWaiting(waiting);
             resource.getRiderMutex().release();                             //bus unlocks the mutex
 
         } catch (InterruptedException ex) {              //Exception if the above procedure got interupted in the middle
-            logger.error( "senate.bus.problem.Bus " + bus_id + "'s thread got interrupted !!", ex);
+            logger.error( "The bus " + bus_id + "'s thread got interrupted !!", ex);
         }
 
-        logger.info("senate.bus.problem.Bus " + bus_id + " departed with " + totalRidersWaitingToBoard + " riders on board!");
+        logger.info("The bus " + bus_id + " departed with " + totalRidersWaitingToBoard + " riders on board!");
     }
 }
