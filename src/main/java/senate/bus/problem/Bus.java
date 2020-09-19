@@ -21,7 +21,6 @@ public class Bus implements Runnable{
 
     }
 
-    @Override
     public void run() {
         try {
             resource.getRiderMutex().acquire();                             //bus locks the mutex
