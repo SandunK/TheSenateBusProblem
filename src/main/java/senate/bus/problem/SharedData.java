@@ -1,3 +1,5 @@
+package senate.bus.problem;
+
 import java.util.concurrent.Semaphore;
 
 public class SharedData {
