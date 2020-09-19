@@ -17,20 +17,16 @@ public class Rider implements Runnable {
     public void run() {
         try {
 
-            /*
-             *   First the rider increments the waiting rider count to get into the waiting rider set.
-             *   Since the waiting_riders is a shared variable, the rider sgould acquire the mutex in order to access this variable.
-             */
             sharedData.getRiderMutex().acquire();                //rider locks the mutex
             int waiting = sharedData.getWaiting()+1;
             logger.info("The Rider " + id + " is waiting !! Total waiting riders: "+waiting);
             sharedData.incrementWaiting();                 //increment the number of waiting riders by one
             sharedData.getRiderMutex().release();                //release the mutex
             sharedData.getBus().acquire();                  //acquire the bus semaphore to get on board
-            logger.info("The Rider " + id + "got onboard.");            //acquire the bus semaphore to get on board
+            logger.info("The Rider " + id + "got onboard.");
             sharedData.getBoarded().release();              //once boarded, release the boarded semaphore
 
-        } catch (InterruptedException ex) { //Exception if the above procedure got interupted in the middle
+        } catch (InterruptedException ex) {
             logger.info("The Rider" + id + "'s thread got interrupted !!", ex);
 
         }
