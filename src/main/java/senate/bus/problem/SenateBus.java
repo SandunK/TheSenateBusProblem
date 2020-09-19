@@ -7,7 +7,7 @@ public class SenateBus {
         SharedData resource = new SharedData();
         int bus_id=0, rider_id=0;                           //Ids are assigned for buses and riders for the easy demonstration of the program
         long diff_bus=0,diff_rider=0,time_curr=0,time_prev_bus=System.currentTimeMillis(),time_prev_rider=System.currentTimeMillis();
-        double mean_rider=30000,mean_bus=1200000;           //Declaring the mean of the exponential distributions of inter-arrival times of riders and buses
+        double mean_rider=10000,mean_bus=50000;           //Declaring the mean of the exponential distributions of inter-arrival times of riders and buses
         double rand_bus  = 0.0,rand_rider=0,wait_time_rider=0,wait_time_bus=0;
 
         rand_bus = new Random().nextDouble();

@@ -25,16 +25,17 @@ public class Bus implements Runnable{
     public void run() {
         try {
             resource.getRiderMutex().acquire();                             //bus locks the mutex
-            logger.info("senate.bus.problem.Bus " + bus_id + " has arrived to the bus stop and locked it!!");//The number of riders available for the bus is 50 out of all the passengers in the boarding area. If the waiting passengers is less than 50, then all can get in.
+            logger.info("The bus " + bus_id + " has arrived to the bus stop and locked it!!");//The number of riders available for the bus is 50 out of all the passengers in the boarding area. If the waiting passengers is less than 50, then all can get in.
 
             totalRidersWaitingToBoard = Math.min(waiting, 50);
             logger.info("waiting  : " + waiting + " To board : " + totalRidersWaitingToBoard);
 
             for (int i = 0; i < totalRidersWaitingToBoard; i++) {     //A loop to get all the available riders  on board
-                logger.info("The senate.bus.problem.Bus " + bus_id + " is ready to board " + i + "th rider");
+                logger.info("The bus " + bus_id + " is ready to board " + i + "th rider");
                 resource.getBus().release();                              //bus signals that it has arrived and can take a passenger on board
+                logger.info("The bus " + bus_id + " released the bus lock " + i + "th rider");
                 resource.getBoarded().acquire();                          //Allows one rider to get on board
-                logger.info("senate.bus.problem.Bus " + bus_id + " acquired boarded !!!!! !!");
+                logger.info("bus " + bus_id + " acquired boarded !!!!! !!");
             }
 
                 /*
